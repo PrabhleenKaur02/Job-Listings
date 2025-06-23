@@ -9,12 +9,19 @@ const JobListings = ({ isHome = false }) => {
     useEffect( () => { 
       const fetchJobs = async () => {
         const apiURL = isHome ? '/api/jobs?_limit=3' : '/api/jobs'
+        console.log('fetching from: ', apiURL)
         try {
-          const res = await fetch(apiURL);
+          const res = await fetch(apiURL, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
         const data = await res.json();
-        setJobs(data);
+        console.log(Array.isArray(data.JobsList), data.JobsList)
+        setJobs(data.JobsList || [])
         } catch (error) {
           console.log('Error fetching data', error)
+          setJobs([])
         }finally {
           setLoading(false);
         }
@@ -32,10 +39,12 @@ const JobListings = ({ isHome = false }) => {
         
             {loading ? (
             <Spinner loading={loading} />
+          ) : jobs.length === 0 ? (
+            <p className='text-center text-grey-500'>OOPS! No jobs found</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              { jobs.map((job) => (
-              <JobListing key={job.id} job={ job } />
+              { Array.isArray(jobs) && jobs.map((job) => (
+              <JobListing key={job._id} job={ job } />
             )) }
              </div>
             )}

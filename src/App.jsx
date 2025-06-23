@@ -9,6 +9,7 @@ import AddJobPage from "./pages/AddJobPage";
 import EditJobPage from "./pages/EditJobPage";
 
 const App = () => {
+  
   // Add New Job
   const addJob = async(newJob) => {
     const res = await fetch('/api/jobs', {
@@ -18,7 +19,10 @@ const App = () => {
       },
       body: JSON.stringify(newJob)
     })
-    return;
+    if(!res.ok){
+      throw new Error('Failed to add Job')
+    }
+    return
   }
   
   // Delete Job
@@ -31,6 +35,7 @@ const App = () => {
 
   // Update Job
   const updateJob = async(job) => {
+    console.log("api works!")
       const res = await fetch(`/api/jobs/${job.id}`, {
         method: 'PUT',
         headers: {

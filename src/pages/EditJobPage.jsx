@@ -5,6 +5,13 @@ import { toast } from 'react-toastify';
 const EditJobPage = ({updateJobSubmit}) => {
     const job = useLoaderData();
 
+    const { id } = useParams()
+    const navigate = useNavigate();
+
+    console.log("job: ", job)
+    console.log("jobID: ", id)
+
+
     const [title, setTitle] = useState(job.title);
     const [type, setType] = useState(job.type);
     const [location, setLocation] = useState(job.location);
@@ -14,9 +21,6 @@ const EditJobPage = ({updateJobSubmit}) => {
     const [companyDescription, setCompanyDescription] = useState(job.company.description);
     const [contactEmail, setContactEmail] = useState(job.company.contactEmail);
     const [contactPhone, setContactPhone] = useState(job.company.contactPhone);
-
-    const navigate = useNavigate();
-    const { id } = useParams();
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -38,7 +42,7 @@ const EditJobPage = ({updateJobSubmit}) => {
       
         updateJobSubmit(updatedJob);
         toast.success('Job updated successfully!')
-        return navigate(`/jobs/${id}`);
+        navigate(`/jobs/${id}`);
       }
 
   return (
@@ -53,8 +57,7 @@ const EditJobPage = ({updateJobSubmit}) => {
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
-                >Job Type</label
-              >
+                >Job Type</label>
               <select
                 id="type"
                 name="type"
@@ -72,8 +75,7 @@ const EditJobPage = ({updateJobSubmit}) => {
 
             <div className="mb-4">
               <label className="block text-gray-700 font-bold mb-2"
-                >Job Listing Name</label
-              >
+                >Job Listing Name</label>
               <input
                 type="text"
                 id="title"
@@ -149,8 +151,7 @@ const EditJobPage = ({updateJobSubmit}) => {
 
             <div className="mb-4">
               <label htmlFor="company" className="block text-gray-700 font-bold mb-2"
-                >Company Name</label
-              >
+                >Company Name</label>
               <input
                 type="text"
                 id="company"
@@ -166,8 +167,7 @@ const EditJobPage = ({updateJobSubmit}) => {
               <label
                 htmlFor="company_description"
                 className="block text-gray-700 font-bold mb-2"
-                >Company Description</label
-              >
+                >Company Description</label>
               <textarea
                 id="company_description"
                 name="company_description"
@@ -183,8 +183,7 @@ const EditJobPage = ({updateJobSubmit}) => {
               <label
                 htmlFor="contact_email"
                 className="block text-gray-700 font-bold mb-2"
-                >Contact Email</label
-              >
+                >Contact Email</label>
               <input
                 type="email"
                 id="contact_email"
@@ -200,8 +199,7 @@ const EditJobPage = ({updateJobSubmit}) => {
               <label
                 htmlFor="contact_phone"
                 className="block text-gray-700 font-bold mb-2"
-                >Contact Phone</label
-              >
+                >Contact Phone</label>
               <input
                 type="tel"
                 id="contact_phone"
@@ -227,6 +225,6 @@ const EditJobPage = ({updateJobSubmit}) => {
     </section>
     </>
   )
-}
+  }
 
 export default EditJobPage

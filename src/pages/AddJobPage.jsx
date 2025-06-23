@@ -16,6 +16,7 @@ const [contactPhone, setContactPhone] = useState('');
 
 const navigate = useNavigate();
 
+
 const submitForm = (e) => {
   e.preventDefault();
 
@@ -35,7 +36,7 @@ const submitForm = (e) => {
 
   addJobSubmit(newJob);
   toast.success('New Job is added successfully!')
-  return navigate('/jobs');
+  return navigate(`/jobs`);
 }
 
 
@@ -51,8 +52,7 @@ const submitForm = (e) => {
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
-                >Job Type</label
-              >
+                >Job Type</label>
               <select
                 id="type"
                 name="type"
@@ -70,8 +70,7 @@ const submitForm = (e) => {
 
             <div className="mb-4">
               <label className="block text-gray-700 font-bold mb-2"
-                >Job Listing Name</label
-              >
+                >Job Listing Name</label>
               <input
                 type="text"
                 id="title"
@@ -103,15 +102,14 @@ const submitForm = (e) => {
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
-                >Salary</label
-              >
+                >Salary</label>
               <select
                 id="salary"
                 name="salary"
                 className="border rounded w-full py-2 px-3"
                 required
                 value={salary} 
-                onChange={(e) => setSalary(e.target.value)}
+                onChange={(e) => setSalary(Number(e.target.value))}
               >
                 <option value="Under $50K">Under $50K</option>
                 <option value="$50K - 60K">$50K - $60K</option>
@@ -147,8 +145,7 @@ const submitForm = (e) => {
 
             <div className="mb-4">
               <label htmlFor="company" className="block text-gray-700 font-bold mb-2"
-                >Company Name</label
-              >
+                >Company Name</label>
               <input
                 type="text"
                 id="company"
@@ -164,8 +161,7 @@ const submitForm = (e) => {
               <label
                 htmlFor="company_description"
                 className="block text-gray-700 font-bold mb-2"
-                >Company Description</label
-              >
+                >Company Description</label>
               <textarea
                 id="company_description"
                 name="company_description"
@@ -181,8 +177,7 @@ const submitForm = (e) => {
               <label
                 htmlFor="contact_email"
                 className="block text-gray-700 font-bold mb-2"
-                >Contact Email</label
-              >
+                >Contact Email</label>
               <input
                 type="email"
                 id="contact_email"
@@ -198,8 +193,7 @@ const submitForm = (e) => {
               <label
                 htmlFor="contact_phone"
                 className="block text-gray-700 font-bold mb-2"
-                >Contact Phone</label
-              >
+                >Contact Phone</label>
               <input
                 type="tel"
                 id="contact_phone"
